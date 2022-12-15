@@ -1,4 +1,4 @@
-const User = require("./models/user.model");
+const User = require("../models/user.model.js");
 
 exports.register = (req, res) => {
   const newUser = new User({
@@ -49,4 +49,12 @@ exports.deleteOneUser = (req, res) => {
   User.findByIdAndDelete(req.params.id)
     .then(user => res.send({ message: `user with id ${user._id} successfully deleted` }))
     .catch(err => res.status(400).send(err))
+}
+
+exports.getUsers = (req, res) => {
+  User.find().then(
+    (users) => {
+      res.send(users)
+    })
+    .catch(err => res.send(err))
 }
