@@ -1,11 +1,15 @@
 const User = require("../models/user.model.js");
+const bcrypt = require('bcrypt');
 
 exports.register = (req, res) => {
+
+  const hashedPassword = bcrypt.hashSync(req.body.password, 10);
+
   const newUser = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     email: req.body.email,
-    password: req.body.password
+    password: hashedPassword
   })
   newUser.save()
     .then((user) => {
