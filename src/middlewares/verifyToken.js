@@ -17,6 +17,8 @@ function verifyToken(req, res, next) {
         message: "non authorized"
       })
     }
+    console.log(jwtDecoded);
+    req.userToken = jwtDecoded;
     next();
   });
 }

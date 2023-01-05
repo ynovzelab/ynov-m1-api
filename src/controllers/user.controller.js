@@ -43,7 +43,7 @@ exports.updateUser = (req, res) => {
 }
 
 exports.getOneUser = (req, res) => {
-  User.findById(req.params.id).then((user) => {
+  User.findById(req.userToken.id).then((user) => {
     if (!user) {
       return res.status(404).send({
         message: "User not found"
