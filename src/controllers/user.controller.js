@@ -1,5 +1,6 @@
 const User = require("../models/user.model.js");
 const bcrypt = require('bcrypt');
+var jwt = require('jsonwebtoken');
 
 exports.register = (req, res) => {
 
@@ -13,7 +14,13 @@ exports.register = (req, res) => {
   })
   newUser.save()
     .then((user) => {
-      res.send(user)
+      var userToken = jwt.sign({
+        id: user._id,
+        isAdmin: user.isAdmin
+      }, process.env.JWT_SECRET);
+      res.send({
+        token: userToken
+      })
     })
     .catch(err => {
       res.status(404).send(err)
