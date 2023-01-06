@@ -6,7 +6,6 @@ const verifyAdmin = require('../middlewares/verifyAdmin');
 
 router.get('/users', verifyToken, verifyAdmin, userController.getUsers);
 router.get('/', verifyToken, userController.getOneUser);
-router.post('/', userController.register);
 router.put('/:id', userController.updateUser);
 router.delete('/:id', userController.deleteOneUser)
 

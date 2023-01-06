@@ -1,31 +1,4 @@
 const User = require("../models/user.model.js");
-const bcrypt = require('bcrypt');
-var jwt = require('jsonwebtoken');
-
-exports.register = (req, res) => {
-
-  const hashedPassword = bcrypt.hashSync(req.body.password, 10);
-
-  const newUser = new User({
-    firstName: req.body.firstName,
-    lastName: req.body.lastName,
-    email: req.body.email,
-    password: hashedPassword
-  })
-  newUser.save()
-    .then((user) => {
-      var userToken = jwt.sign({
-        id: user._id,
-        isAdmin: user.isAdmin
-      }, process.env.JWT_SECRET);
-      res.send({
-        token: userToken
-      })
-    })
-    .catch(err => {
-      res.status(404).send(err)
-    })
-}
 
 exports.updateUser = (req, res) => {
   User.findByIdAndUpdate(req.params.id, req.body, { new: true })
