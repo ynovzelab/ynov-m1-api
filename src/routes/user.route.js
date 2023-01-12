@@ -6,7 +6,7 @@ const verifyAdmin = require('../middlewares/verifyAdmin');
 
 router.get('/users', verifyToken, verifyAdmin, userController.getUsers);
 router.get('/', verifyToken, userController.getOneUser);
-router.put('/:id', userController.updateUser);
+router.put('/', verifyToken, userController.updateUser);
 router.delete('/:id', userController.deleteOneUser)
 
 module.exports = router;

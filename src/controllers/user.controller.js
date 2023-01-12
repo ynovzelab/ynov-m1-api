@@ -1,7 +1,7 @@
 const User = require("../models/user.model.js");
 
 exports.updateUser = (req, res) => {
-  User.findByIdAndUpdate(req.params.id, req.body, { new: true })
+  User.findByIdAndUpdate(req.userToken.id, req.body, { new: true })
     .then((user) => {
       if (!user) {
         return res.status(404).send({
