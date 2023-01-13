@@ -10,3 +10,9 @@ exports.createPlace = (req, res) => {
   )
     .catch(err => res.status(400).send(err));
 }
+
+exports.getPlaces = (req, res) => {
+  Place.find().populate('owner').then(
+    (places) => res.send(places)
+    .catch(err => res.status(400).send(err)))
+}
