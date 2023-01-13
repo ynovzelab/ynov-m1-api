@@ -1,10 +1,10 @@
 Créer un model Place
 - title
-- type
+- type => Model type (name) ex: Appartement, loft, maison, chateau, cabane, camping
 - owner (user) => relationnel type User 
 - pricePerDay
 - images: []
-- capacity = Capacity(name)
+- capacity
 - description
 - Address : {
   - city,
