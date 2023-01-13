@@ -14,7 +14,6 @@ const newUser = new User({
 })
 newUser.save()
   .then((user) => {
-
     const userToken = signJwt({
       id: user._id,
       isAdmin: user.isAdmin
@@ -27,6 +26,7 @@ newUser.save()
   .catch(err => {
     res.status(404).send(err)
   })
+
 }
 
 exports.login = (req, res) => {
