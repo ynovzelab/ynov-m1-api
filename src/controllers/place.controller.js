@@ -2,6 +2,8 @@ const Place = require('../models/place.model');
 
 exports.createPlace = (req, res) => {
 
+  console.log(req.body.description)
+
   Place.create(req.body).then(
     (place) =>
       res.send(place)
