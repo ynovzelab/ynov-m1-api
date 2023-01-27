@@ -36,7 +36,7 @@ exports.deleteOneUser = (req, res) => {
 }
 
 exports.getUsers = (req, res) => {
-  User.find().then(
+  User.find().populate('places').then(
     (users) => {
       res.send(users)
     })

@@ -2,7 +2,7 @@ const User = require("../models/user.model.js");
 const bcrypt = require('bcrypt');
 const { signJwt } = require("../helpers/signJwt.js");
 
-exports.register = (req, res) => {
+exports.register = (req, res, next) => {
 
 const hashedPassword = bcrypt.hashSync(req.body.password, 10);
 
@@ -24,7 +24,7 @@ newUser.save()
     })
   })
   .catch(err => {
-    res.status(404).send(err)
+    next(err)
   })
 
 }
